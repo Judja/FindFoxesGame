@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1493839438 source:e:\labs\prog_labs2sem\dkr\cell.cpp
+	"cell.h"
+
+1493838953 e:\labs\prog_labs2sem\dkr\cell.h
+	<SFML/Graphics.hpp>
+
+1493842332 source:e:\labs\prog_labs2sem\dkr\game.cpp
+	"game.h"
+	"screen.h"
+
+1493841976 e:\labs\prog_labs2sem\dkr\game.h
+	<SFML/Graphics.hpp>
+
+1494011445 e:\labs\prog_labs2sem\dkr\screen.h
+	<SFML/Graphics.hpp>
+	"cell.h"
+
+1493837365 source:e:\labs\prog_labs2sem\dkr\main.cpp
+	<SFML/Graphics.hpp>
+	"game.h"
+
+1494012662 source:e:\labs\prog_labs2sem\dkr\screen.cpp
+	"screen.h"
+	"game.h"
+	<ctime>
+

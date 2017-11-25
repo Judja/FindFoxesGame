@@ -1,10 +1,14 @@
 #include "game.h"
 #include "screen.h"
 
+//So, game is our main object, which is always updating and beind drawn
+//But game's update, draw, click and mousemove methods just call CurrentScreen draw, click, etc, methods
+//It allows different sreen to work and implement different logic independently
 Game::Game(sf::RenderWindow* w){
     window = w;
     mainMenu = new MainMenu(this);
     gameScreen = new GameScreen(this);
+    //we use Screen.restart method to init screen
     gameScreen->restart();
     howToPlay = new HowToPlay(this);
     atlas.loadFromFile("atlas.png");

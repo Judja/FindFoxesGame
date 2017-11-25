@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "cell.h"
-
+//definition of all screen classes we use
 class Game;
 
 bool pointInRect(int, int, int, int, int, int);

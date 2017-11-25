@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "game.h"
 
-
+//so, creating window, creting game, drawing, updating, nothing special at all
 int main(){
     sf::RenderWindow window(sf::VideoMode(800, 600), "Foxes");
 

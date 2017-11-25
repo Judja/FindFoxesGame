@@ -5,6 +5,9 @@
 
 class Screen;
 
+//its our Game class definition
+//every game has one Game class, but one Game class has several screens
+//Game is just a container, gathering everything together, all logic is implemented in screens
 class Game{
 private:
     sf::RenderWindow *window;

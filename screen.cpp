@@ -2,6 +2,8 @@
 #include "game.h"
 #include <ctime>
 
+//Implementing screens
+//So, Screen class should be abstract, but then every screen should implement restart and mouseMove, and only GameScreen needs them
 void Screen::mouseMove(sf::Event *event){
 
 }
@@ -11,6 +13,7 @@ void Screen::restart(){
 }
 ////////////////
 
+// is shown when you win
 WinScreen::WinScreen(Game *g){
     game = g;
     bg.setTexture(game->atlas);
@@ -36,6 +39,7 @@ void WinScreen::draw(sf::RenderWindow *window){
 
 void WinScreen::update(){}
 
+//loseScreen is shown... never... due to the rules player cannot lose
 LoseScreen::LoseScreen(Game *g){
     game = g;
     bg.setTexture(game->atlas);
@@ -61,12 +65,13 @@ void LoseScreen::draw(sf::RenderWindow *window){
 
 void LoseScreen::update(){}
 ///////////////////////////////////////
+//is shown when ypu find new fox
 FoundedScreen::FoundedScreen(Game *g){
     game = g;
     bg.setTexture(game->atlas);
     bg.setTextureRect(sf::IntRect(800, 1100, 400, 100));
 }
-
+//it just disapear when you click
 void FoundedScreen::click(sf::Event *event){
     game->setScreen(game->gameScreen);
 }
@@ -80,6 +85,7 @@ void FoundedScreen::draw(sf::RenderWindow *window){
 void FoundedScreen::update(){}
 
 /////////////////////////////////
+//MainMenu is main menu///
 void MainMenu::click(sf::Event *event){
     if(pointInRect((*event).mouseButton.x, (*event).mouseButton.y, 570, 500, 200, 60))
         game->getWindow()->close();
@@ -108,6 +114,7 @@ bool pointInRect(int xp, int yp, int xr, int yr, int wr, int hr){
     return false;
 }
 //////////////////////////////
+//screen with rules
 HowToPlay::HowToPlay(Game *g){
     game = g;
     bg.setTexture(game->atlas);
@@ -126,6 +133,7 @@ void HowToPlay::draw(sf::RenderWindow *window){
     window->draw(bg);
 }
 ////////////////////////////////
+//the Game screen
 GameScreen::GameScreen(Game *g){
     game = g;
     bg.setTexture(game->atlas);
@@ -134,7 +142,9 @@ GameScreen::GameScreen(Game *g){
     loseScreen = new LoseScreen(g);
     foundedScreen = new FoundedScreen(g);
 }
-
+//click has to determine, where do you click
+//if you click on a field, it checks, whether you found a fox
+//counts amounts of foxes in horizontal, vertical and diagonals
 void GameScreen::click(sf::Event *event){
     int x = (*event).mouseButton.x;
     int y = (*event).mouseButton.y;
@@ -200,7 +210,8 @@ void GameScreen::click(sf::Event *event){
         }
     }
 }
-
+//mouseMove is used to mark the cell you are pointing to, and vertical, horizontal and diagonal lines
+//marked cells will be drawn in darker colour
 void GameScreen::mouseMove(sf::Event *event){
     int x = (*event).mouseMove.x;
     int y = (*event).mouseMove.y;
@@ -267,6 +278,7 @@ void GameScreen::draw(sf::RenderWindow *window){
     }
 }
 
+//restarts / inits the game
 void GameScreen::restart(){
     srand(time(NULL));
     lastMarked = NULL;
